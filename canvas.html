@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>jQuery injection into webview preload</title>
+</head>
+
+<body>
+  <div id="loading">Waiting for webpage to load</div>
+  <canvas id="myCanvas" width="1250" height="2730" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+
+  <script>
+
+    function drawRectangles(rectangles) {
+
+      document.getElementById("loading").style.display = "none";
+
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      for (var i = 0; i < rectangles.length; i++) {
+        ctx.beginPath();
+        ctx.rect(...rectangles[i]);
+        ctx.stroke();
+      }
+    }
+
+  </script>
+</body>
+
+</html>
