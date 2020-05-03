@@ -12,17 +12,47 @@
 
   <script>
 
-    function drawRectangles(rectangles) {
+    function drawAbstract(elements) {
 
       document.getElementById("loading").style.display = "none";
 
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
-      for (var i = 0; i < rectangles.length; i++) {
-        ctx.beginPath();
-        ctx.rect(...rectangles[i]);
-        ctx.stroke();
+      for (var i = 0; i < elements.length; i++) {
+
+        if (elements[i].type == "text") {
+          waveFunction(ctx, elements[i])
+          rectangle(ctx, elements[i])
+        }
+        else {
+          rectangle(ctx, elements[i])
+        }
+
       }
+    }
+
+    function waveFunction(ctx, element) {
+      if (element.width <= 0 || element.height <= 0) { return }
+      let step_size = 10;
+
+      let x = element.x
+      let y = element.y + element.height
+
+      while (x - element.x + step_size < element.width) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+
+        ctx.bezierCurveTo(x, y - element.height, x + step_size, y - element.height, x + step_size, y);
+        ctx.stroke();
+
+        x = x + step_size
+      }
+
+    }
+    function rectangle(ctx, element) {
+      ctx.beginPath();
+      ctx.rect(element.x, element.y, element.width, element.height);
+      ctx.stroke();
     }
 
   </script>

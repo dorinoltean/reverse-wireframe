@@ -4,9 +4,10 @@ Reverse wireframe is a tool for generating a wireframe view of an existing websi
 
 
 # Run 
-
+```
 npm install
 npm run dev -- "https://github.com/dorinoltean/reverse-wireframe"
+```
 
 
 ## License
